@@ -12,100 +12,52 @@ template <typename Data> class MyNode
 {
 private:
 	Data myValue;
-	std::string key;
-	MyNode<Data>* left;
-	MyNode<Data>* right;
+	Data myKey;
 
 public:
 	MyNode();
 	MyNode(Data, std::string);
-	MyNode(Data, std::string, MyNode<Data>*, MyNode<Data>*);
 	~MyNode();
-	Data getValue();
-	void setValue(Data, std::string);
-	MyNode<Data>* getLeft();
-	std::string getKey();
-	void setLeft(MyNode<Data>*);
-	MyNode<Data>* getRight();
-	void setRight(MyNode<Data>*);
+	Data getMyValue();
+	void setMyValue(Data);
+	std::string getMyKey();
 };
 
 //Default Constructor
 template <typename Data> MyNode<Data>::MyNode()
 {
 	myValue = NULL;
-	key = "";
-	left = NULL;
-	right = NULL;
+	key = NULL;
 }
 
 //Constructor that takes one Data parameter
-template <typename Data> MyNode<Data>::MyNode(Data value, std::string key1)
+template <typename Data> MyNode<Data>::MyNode(Data key, Data value)
 {
+	myKey = key;
 	myValue = value;
-	left = NULL;
-	right = NULL;
-	key = key1;
 }
 
-//Constructor that takes a Data and two MyNode pointers for right and left child
-template <typename Data> MyNode<Data>::MyNode(Data value, std::string key1,
-	MyNode<Data>* left,
-	MyNode<Data>* right)
-{
-	myValue = value;
-	left = left;
-	right = right;
-	key = key1;
-}
-
-//Destructor - deallocates the memory pointing to left and right child
+//Destructor 
 template <typename Data> MyNode<Data>::~MyNode()
 {
-	delete left;
-	delete right;
+	//Do nothing
 }
 
 //returns the value stored in node
-template <typename Data> Data MyNode<Data>::getValue()
+template <typename Data> Data MyNode<Data>::getMyValue()
 {
 	return myValue;
 }
 
-template <typename Data> std::string MyNode<Data>::getKey()
+template <typename Data> std::string MyNode<Data>::getMyKey()
 {
-	return key;
+	return myKey;
 }
 
 //sets the value stored in node
-template <typename Data> void MyNode<Data>::setValue(Data value, std::string key1)
+template <typename Data> void MyNode<Data>::setMyValue(Data newValue)
 {
-	myValue = value;
-	key = key1;
-}
-
-//gets left child
-template <typename Data> MyNode<Data>* MyNode<Data>::getLeft()
-{
-	return left;
-}
-
-//set pointer of left child
-template <typename Data> void MyNode<Data>::setLeft(MyNode<Data>* newLeft)
-{
-	left = newLeft;
-}
-
-//get right child
-template <typename Data> MyNode<Data>* MyNode<Data>::getRight()
-{
-	return right;
-}
-
-//set pointer of right child
-template <typename Data> void MyNode<Data>::setRight(MyNode<Data>* newRight)
-{
-	right = newRight;
+	myValue = newValue;
 }
 
 #endif /* node_h */
