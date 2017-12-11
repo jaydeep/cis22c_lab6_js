@@ -44,7 +44,7 @@ int main() {
 
 	inputFile.close();
 
-	MyHash p_hash = MyHash(3 * size); //use 3*size for better efficiency
+	MyHash p_hash = MyHash(2 * size); //use 3*size for better efficiency
 	inputFile.open(filePath);
 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
