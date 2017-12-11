@@ -16,7 +16,7 @@ private:
 
 public:
 	MyNode();
-	MyNode(Data, std::string);
+	MyNode(Data, Data);
 	~MyNode();
 	Data getMyValue();
 	void setMyValue(Data);
@@ -26,8 +26,7 @@ public:
 //Default Constructor
 template <typename Data> MyNode<Data>::MyNode()
 {
-	myValue = NULL;
-	key = NULL;
+	//do nothing. default value would be garbage.
 }
 
 //Constructor that takes one Data parameter

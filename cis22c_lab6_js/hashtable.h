@@ -66,7 +66,7 @@ MyHash::MyHash(int hash_size)
 void MyHash::add(MyNode<std::string>* value)
 {
 	num_operations += 1;
-	std::string  vin = value->getValue(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
+	std::string  vin = value->getMyValue(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
@@ -127,7 +127,7 @@ bool MyHash::remove(std::string vin)
 				num_collisions++;
 			}
 			else {
-				tempvin = table[next_slot]->getValue(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
+				tempvin = table[next_slot]->getMyValue(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
 				if (vin == tempvin) {
 					// We found the record to be deleted
 					delete table[next_slot];
@@ -168,7 +168,7 @@ MyNode<std::string>* MyHash::find(std::string vin)
 				attempt = attempt + 1;
 			}
 			else {
-				tempvin = table[next_slot]->getValue(); //TODO FIX>>>>>>>>>>>>>>>>>>>>>>>>>>>
+				tempvin = table[next_slot]->getMyValue(); //TODO FIX>>>>>>>>>>>>>>>>>>>>>>>>>>>
 				if (vin == tempvin) {
 					return table[next_slot];
 				}
