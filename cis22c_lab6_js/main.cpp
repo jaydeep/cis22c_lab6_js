@@ -44,45 +44,20 @@ int main() {
 
 	inputFile.close();
 
-	MyHash p_hash = MyHash(2 * size); //use 3*size for better efficiency
+	MyHash p_hash = MyHash(2 * size); //use 2*size for better efficiency
 	inputFile.open(filePath);
 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
 	//get data from file and add them to tree/hash
-	while (std::getline(inputFile, tempInput))
-	{
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			VIN = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
+	//read name line
+	//save name
+	//read birthday line
+	//save birthday
+	//create tempNode
+	//add node to hashtable
+	//return to main menu
 
-		found = tempInput.find(" ");
-
-		if (found != std::string::npos) {
-			make = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			model = tempInput.substr(0, found);
-			year = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
-		tempNode = new MyNode<std::string>(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>
-		//TODO ADD RECORD TO TABLE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	}
 	//Close file now that we are done with it
 	inputFile.close();
 
@@ -90,12 +65,11 @@ int main() {
 	std::cout << std::endl << std::endl << "Menu: " << std::endl;
 	std::cout << "  [a] Add Record" << std::endl;
 	std::cout << "  [b] Remove Record" << std::endl;
-	std::cout << "  [c] Search by VIN" << std::endl;
+	std::cout << "  [c] Search by Key" << std::endl;
 	std::cout << "  [d] Print Table" << std::endl;
 	std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
-	std::cout << "  [f] Print Indented Tree" << std::endl;
-	std::cout << "  [g] Print Efficiency of Table" << std::endl;
-	std::cout << "  [h] Write to File" << std::endl;
+	std::cout << "  [f] Print Efficiency of Table" << std::endl;
+	std::cout << "  [g] Write to File" << std::endl;
 	std::cout << "  [q] Quit" << std::endl;
 	std::cout << std::endl << "Please enter a letter to select a menu option: ";
 	std::cin >> menuInput;
@@ -127,14 +101,10 @@ int main() {
 			//head.printSortedTable();
 			break;
 		case 'f':
-			//Print Indented Tree
-			//head.printTree();
-			break;
-		case 'g':
 			//Print Efficiency of Table
 			//head.efficiency_stats();
 			break;
-		case 'h':
+		case 'g':
 			//Write to File
 			//head.writeToFile();
 			break;
@@ -146,12 +116,11 @@ int main() {
 		std::cout << std::endl << std::endl << "Menu: " << std::endl;
 		std::cout << "  [a] Add Record" << std::endl;
 		std::cout << "  [b] Remove Record" << std::endl;
-		std::cout << "  [c] Search by VIN" << std::endl;
+		std::cout << "  [c] Search by Key" << std::endl;
 		std::cout << "  [d] Print Table" << std::endl;
 		std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
-		std::cout << "  [f] Print Indented Tree" << std::endl;
-		std::cout << "  [g] Print Efficiency of Table" << std::endl;
-		std::cout << "  [h] Write to File" << std::endl;
+		std::cout << "  [f] Print Efficiency of Table" << std::endl;
+		std::cout << "  [g] Write to File" << std::endl;
 		std::cout << "  [q] Quit" << std::endl;
 		std::cout << std::endl << "Please enter a letter to select a menu option: ";
 		std::cin >> menuInput;
