@@ -42,7 +42,7 @@ public:
 MyHash::MyHash()
 {
 	table = new MyNode<std::string>*[1];
-	NULL_record = new MyNode<std::string>("X", "Y", "Z", "0000");
+	NULL_record = new MyNode<std::string>();
 	hashSize = 1;
 	table[0] = NULL;
 	num_collisions = 0;
@@ -127,7 +127,7 @@ bool MyHash::remove(std::string vin)
 				num_collisions++;
 			}
 			else {
-				tempvin = table[next_slot]->getVIN(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
+				tempvin = table[next_slot]->getValue(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
 				if (vin == tempvin) {
 					// We found the record to be deleted
 					delete table[next_slot];
@@ -168,7 +168,7 @@ MyNode<std::string>* MyHash::find(std::string vin)
 				attempt = attempt + 1;
 			}
 			else {
-				tempvin = table[next_slot]->getVIN(); //TODO FIX>>>>>>>>>>>>>>>>>>>>>>>>>>>
+				tempvin = table[next_slot]->getValue(); //TODO FIX>>>>>>>>>>>>>>>>>>>>>>>>>>>
 				if (vin == tempvin) {
 					return table[next_slot];
 				}
@@ -196,7 +196,7 @@ void MyHash::printAll()
 			std::cout << i << " is deleted record\n";
 		}
 		else {
-			std::cout << "Slot " << i << ": " << table[i]->getValue() << std::endl; //TODO FIX >>>>>>>>>>>>>>
+			std::cout << "Slot " << i << ": has a record." << std::endl; // << table[i]->getValue() << std::endl; //TODO FIX >>>>>>>>>>>>>>
 		}
 		i++;
 	}
