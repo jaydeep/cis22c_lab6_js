@@ -17,8 +17,8 @@
 class MyHash
 {
 private:
-	MyCar** table;
-	MyCar* NULL_record;
+	MyNode<std::string>** table;
+	MyNode<std::string> * NULL_record;
 	int hashSize;
 	int num_collisions; // for add and remove
 	int num_operations; // for add and remove
@@ -28,10 +28,10 @@ public:
 	MyHash();
 	MyHash(int);
 	//~MyHash();
-	void add(MyCar*);
+	void add(MyNode<std::string>*);
 	bool remove(std::string);
 	int find_empty_slot(unsigned);
-	MyCar* find(std::string);
+	MyNode<std::string>* find(std::string);
 	void printAll();
 	unsigned hash_str(const char* s);
 	void efficiency_stats();
@@ -41,8 +41,8 @@ public:
 //Default Constructor
 MyHash::MyHash()
 {
-	table = new MyCar*[1];
-	NULL_record = new MyCar("X", "Y", "Z", "0000");
+	table = new MyNode<std::string>*[1];
+	NULL_record = new MyNode<std::string>("X", "Y", "Z", "0000");
 	hashSize = 1;
 	table[0] = NULL;
 	num_collisions = 0;
@@ -51,8 +51,8 @@ MyHash::MyHash()
 //Default Constructor
 MyHash::MyHash(int hash_size)
 {
-	table = new MyCar*[hash_size];
-	NULL_record = new MyCar("X", "Y", "Z", "0000");
+	table = new MyNode<std::string>*[hash_size];
+	NULL_record = new MyNode<std::string>(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	hashSize = hash_size;
 	num_collisions = 0;
 	num_operations = 0;
@@ -63,10 +63,10 @@ MyHash::MyHash(int hash_size)
 	}
 }
 
-void MyHash::add(MyCar* value)
+void MyHash::add(MyNode<std::string>* value)
 {
 	num_operations += 1;
-	std::string  vin = value->getVIN();
+	std::string  vin = value->getValue(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
@@ -127,7 +127,7 @@ bool MyHash::remove(std::string vin)
 				num_collisions++;
 			}
 			else {
-				tempvin = table[next_slot]->getVIN();
+				tempvin = table[next_slot]->getVIN(); //TODO FIX >>>>>>>>>>>>>>>>>>>>>>>>>>>
 				if (vin == tempvin) {
 					// We found the record to be deleted
 					delete table[next_slot];
@@ -146,7 +146,7 @@ bool MyHash::remove(std::string vin)
 	return true;
 }
 
-MyCar* MyHash::find(std::string vin)
+MyNode<std::string>* MyHash::find(std::string vin)
 {
 	num_operations += 1;
 	char vin_ptr[20];
@@ -168,7 +168,7 @@ MyCar* MyHash::find(std::string vin)
 				attempt = attempt + 1;
 			}
 			else {
-				tempvin = table[next_slot]->getVIN();
+				tempvin = table[next_slot]->getVIN(); //TODO FIX>>>>>>>>>>>>>>>>>>>>>>>>>>>
 				if (vin == tempvin) {
 					return table[next_slot];
 				}
@@ -196,7 +196,7 @@ void MyHash::printAll()
 			std::cout << i << " is deleted record\n";
 		}
 		else {
-			std::cout << "Slot " << i << ": " << table[i]->printCar() << std::endl;
+			std::cout << "Slot " << i << ": " << table[i]->getValue() << std::endl; //TODO FIX >>>>>>>>>>>>>>
 		}
 		i++;
 	}
